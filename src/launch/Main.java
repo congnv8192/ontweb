@@ -1,4 +1,7 @@
+package launch;
 import java.io.File;
+
+import javax.naming.directory.DirContext;
 
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.core.StandardContext;
@@ -31,7 +34,7 @@ public class Main {
         WebResourceRoot resources = new StandardRoot(ctx);
         resources.addPreResources(new DirResourceSet(resources, "/WEB-INF/classes",
                 additionWebInfClasses.getAbsolutePath(), "/"));
-        ctx.setResources(resources);
+        ctx.setResources((DirContext) resources);
 
         tomcat.start();
         tomcat.getServer().await();
