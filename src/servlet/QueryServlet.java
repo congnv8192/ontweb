@@ -46,18 +46,20 @@ public class QueryServlet extends Servlet {
 
 		String q = Utils.paramToUTF8(request.getParameter("q"));
 		
-		List<OntIndividual> individuals = app.query(q);
+		// wiki search
+		String page = app.search(q);
+		
+		List<OntIndividual> individuals = app.query(page);
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
 		// no local result
 		if (individuals.isEmpty()) {
 			try {
-				// wiki search
-				String page = app.search(q);
-				
 				// wiki article
 				WikiArticle article = app.addArticleByUrl(page);
+				
+				System.out.println(article.getText());
 				
 				// save
 				URL url = getClass().getClassLoader().getResource(AppConfig.WEB_PATH_ONTO);
@@ -66,7 +68,7 @@ public class QueryServlet extends Servlet {
 				result.put("onSave", true);
 				
 				// retry
-				individuals = app.query(q);
+				individuals = app.query(article.getTitle());
 				
 			} catch (UnsupportedEncodingException e) {
 				result.put("onArticle", false);

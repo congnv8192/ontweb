@@ -37,10 +37,12 @@ public class App {
 //			for (OntIndividual individual : individuals) {
 //				System.out.println(individual);
 //			}
+			
+			System.out.println(app.addArticleByUrl("Thành phố Hồ Chí Minh").getTitle());
 
-			try (OutputStream os = new FileOutputStream(AppConfig.APP_PATH_ONTO)) {
-				app.exportOntology(os, Lang.RDFXML);
-			}
+//			try (OutputStream os = new FileOutputStream(AppConfig.APP_PATH_ONTO)) {
+//				app.exportOntology(os, Lang.RDFXML);
+//			}
 			
 //			app.exportOntology(System.out, Lang.RDFXML);
 		} catch (Exception e) {

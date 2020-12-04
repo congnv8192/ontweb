@@ -247,8 +247,9 @@ public class Wiki2Ont implements IArticleFilter {
 	}
 
 	public WikiArticle addArticleByUrl(String page) throws UnsupportedEncodingException {
+		page = page.replace(" ", "_");
 		page = URLEncoder.encode(page, "UTF-8");
-
+		
 		String url = "https://vi.wikipedia.org/w/api.php?action=parse&prop=wikitext&format=json&page=" + page;
 
 		String json = sendGet(url);

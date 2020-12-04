@@ -323,15 +323,19 @@ public class PatternMatcher {
 			if (line.equals("}}")) {
 				break;
 			}
-
-			if (line.startsWith("|")) { // new
-				int index = line.indexOf('=');
-				attribute = line.substring(1, index).trim();
-				value = line.substring(index + 1).trim();
-				attributes.put(attribute, value);
-			} else if (attribute != null) { // multiple line attribute values
-				value += ", " + line;
-				attributes.put(attribute, value);
+			
+			try {
+				if (line.startsWith("|")) { // new
+					int index = line.indexOf('=');
+					attribute = line.substring(1, index).trim();
+					value = line.substring(index + 1).trim();
+					attributes.put(attribute, value);
+				} else if (attribute != null) { // multiple line attribute values
+					value += ", " + line;
+					attributes.put(attribute, value);
+				}
+			} catch (Exception e) {
+				continue;
 			}
 		}
 
