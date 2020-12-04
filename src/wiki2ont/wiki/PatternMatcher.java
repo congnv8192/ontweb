@@ -316,7 +316,7 @@ public class PatternMatcher {
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine().trim();
 
-			if (line.isBlank()) {
+			if (line.trim().isEmpty()) {
 				continue;
 			}
 
@@ -347,7 +347,7 @@ public class PatternMatcher {
 		for (String key : attributes.keySet()) {
 			String v = attributes.get(key);
 			
-			if (attributes.get(key).isBlank()) {
+			if (attributes.get(key).trim().isEmpty()) {
 				result.put(key, v);
 			}
 		}
