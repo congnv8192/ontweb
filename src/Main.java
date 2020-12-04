@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        String webappDirLocation = "src/webappe";
+        String webappDirLocation = "src/webapp";
         Tomcat tomcat = new Tomcat();
 
         //The port that we should run on can be set into an environment variable
@@ -18,7 +18,7 @@ public class Main {
         String webPort = System.getenv("PORT");
         if(webPort == null || webPort.isEmpty()) {
             webPort = "8080";
-        }bapp
+        }
 
         tomcat.setPort(Integer.valueOf(webPort));
 
